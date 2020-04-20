@@ -8,7 +8,10 @@ pipeline {
 
   agent any
  
-  tools {nodejs "Node-build"}
+  tools {
+      nodejs "Node-build",
+      docker "myDocker"
+      }
  
   stages {
     stage('Example') {
@@ -27,13 +30,12 @@ pipeline {
          sh 'npm test'
       }
     } 
-     stage('Initialize Docker'){
-        steps {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        } 
-       
-    }
+    //  stage('Initialize Docker'){
+
+    //         def dockerHome = tool 'myDocker'
+    //         env.PATH = "${dockerHome}/bin:${env.PATH}"
+      
+    // }
 
      stage('Building image') {
       steps{
