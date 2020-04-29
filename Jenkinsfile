@@ -64,14 +64,14 @@ pipeline {
      steps {
 
       
-          sh 'sudo /home/ubuntu/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
-          sh 'kubectl apply -f pod-simple.yaml'
+          // sh '/home/ubuntu/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+          // sh 'kubectl apply -f pod-simple.yaml'
         
          
-        //  withAWS(credentials:'aws-static',region: eksRegion){
-        //     sh '~/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
-        //     sh 'kubectl apply -f pod-simple.yaml'
-        //  }
+         withAWS(credentials:'aws-static',region: eksRegion){
+            sh '/home/ubuntu/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+            sh 'kubectl apply -f pod-simple.yaml'
+         }
       }
     }
 
