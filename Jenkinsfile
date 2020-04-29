@@ -61,7 +61,7 @@ pipeline {
     // }
 
     stage('Deploy to K8S AWS') 
-      steps
+     steps {
 
         script {
           sh '~/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
