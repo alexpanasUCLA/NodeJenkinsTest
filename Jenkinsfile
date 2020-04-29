@@ -60,7 +60,7 @@ pipeline {
     //   }
     // }
 
-    stage('Deploy to K8S AWS') {
+    stage('Deploy to K8S AWS') 
       steps
 
         script {
