@@ -61,17 +61,17 @@ pipeline {
     // }
 
     stage('Deploy to K8S AWS') {
-      steps{
+      steps
 
-        // script {
-        //   sh 'aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
-        //   sh 'kubectl apply -f pod-simple.yaml'
-        // }
+        script {
+          sh '~/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+          sh 'kubectl apply -f pod-simple.yaml'
+        }
          
-         withAWS(credentials:'aws-static',region: eksRegion){
-            sh 'aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
-            sh 'kubectl apply -f pod-simple.yaml'
-         }
+        //  withAWS(credentials:'aws-static',region: eksRegion){
+        //     sh '~/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+        //     sh 'kubectl apply -f pod-simple.yaml'
+        //  }
       }
     }
 
