@@ -64,7 +64,7 @@ pipeline {
      steps {
 
       
-          sh '~/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+          sh '/home/ubuntu/.local/bin/aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
           sh 'kubectl apply -f pod-simple.yaml'
         
          
