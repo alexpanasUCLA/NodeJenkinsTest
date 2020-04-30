@@ -5,7 +5,7 @@ pipeline {
     registryCredential = 'dockerhub'
     dockerImage = ''
     eksRegion = 'us-west-2'
-    eksClusterName = 'testCluster'
+    eksClusterName = 'beautiful-painting-1588212964'
   }  
 
   agent any
@@ -64,7 +64,7 @@ pipeline {
      steps {
 
       
-          sh '$(which aws) eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+          sh '$(which aws) eks --region ${eksRegion} update-kubeconfig --name ${eksClusterName}'
           sh '$(which kubectl) apply -f pod-simple.yaml'
         
          
