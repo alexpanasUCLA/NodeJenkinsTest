@@ -5,7 +5,7 @@ pipeline {
     registryCredential = 'dockerhub'
     dockerImage = ''
     eksRegion = 'us-west-2'
-    eksClusterName = 'beautiful-painting-1588212964'
+    eksClusterName = 'testCluster1'
   }  
 
   agent any
