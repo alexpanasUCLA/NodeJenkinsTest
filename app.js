@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-app.get('/', (req, res) => res.send('Rolling update!'))
+app.get('/', (req, res) => res.send('Hi'))
 
 var server = app.listen(3000, () => {
     console.log("Listening on port " + server.address().port + "...");
