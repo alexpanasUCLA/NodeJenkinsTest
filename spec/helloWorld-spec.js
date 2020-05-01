@@ -13,7 +13,7 @@ describe("Hello World Server", function() {
 
     it("returns Rolling update", function(done) {
       request.get(base_url, function(error, response, body) {
-        expect(body).toBe("Rolling update!");
+        expect(body).toBe("Super update!");
         done();
 
         server.close();

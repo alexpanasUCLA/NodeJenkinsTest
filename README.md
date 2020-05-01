@@ -19,6 +19,18 @@ Amazon EKS is used as it uses CloudFormation to build cluster and simplifies wor
 
 Step 4: Building Pipeline. 
 
+Pipeline frees space by deleting unused image on Jenkins server, and implements dynamic tag change using `changeTag.sh` script. 
+
+Step 5: Testing the pipeline. 
+I changed the word in my app from 'Rolling Update!' to 'Super Update' and pushed 
+to GitHub, and initiated deployment by Jenkins using Rolling Update Strategy. 
+Rolling Update - Screens 3. 
+
+
+
+
+
+
 
 
 
