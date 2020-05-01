@@ -63,7 +63,7 @@ pipeline {
     stage('Deploy to K8S AWS') {
      steps {
 
-          sh 'chmode +x changeTag.sh'
+          sh '/bin/chmod +x changeTag.sh'
           sh './changeTag.sh $BUILD_NUMBER'
           sh '$(which aws) eks --region ${eksRegion} update-kubeconfig --name ${eksClusterName}'
           sh '$(which kubectl) apply -f pod-simple-updated.yaml'
