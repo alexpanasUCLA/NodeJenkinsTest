@@ -26,46 +26,47 @@ pipeline {
          sh 'npm test'
       }
     } 
-    //  stage('Initialize Docker'){
-    //      steps{
-    //        script{
-    //         def dockerHome = tool 'myDocker'
-    //         env.PATH = "${dockerHome}/bin:${env.PATH}"
+     stage('Initialize Docker'){
+         steps{
+           script{
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
                
-    //        }
-    //      }   
-    // }
+           }
+         }   
+    }
 
-    //  stage('Building image') {
-    //   steps{
-    //     script {
-    //       dockerImage = docker.build registry + ":$BUILD_NUMBER"
-    //     }
-    //   }
-    // }
+     stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
 
-    //   stage('Deploy Image') {
-    //   steps{
-    //      script {
-    //         docker.withRegistry( '', registryCredential ) {
-    //         dockerImage.push()
-    //       }
-    //     }
-    //   }
-    // }
+      stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
 
-    //  stage('Remove Unused docker image') {
-    //   steps{
-    //     sh "docker rmi $registry:$BUILD_NUMBER"
-    //   }
-    // }
+     stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
 
     stage('Deploy to K8S AWS') {
      steps {
 
-      
+          sh 'chmode +x changeTag.sh'
+          sh './changeTag.sh $BUILD_NUMBER'
           sh '$(which aws) eks --region ${eksRegion} update-kubeconfig --name ${eksClusterName}'
-          sh '$(which kubectl) apply -f pod-simple.yaml'
+          sh '$(which kubectl) apply -f pod-simple-updated.yaml'
         
          
         //  withAWS(credentials:'aws-static',region: eksRegion){
