@@ -7,10 +7,10 @@ metadata:
 spec:
     replicas: 4
     strategy:
-    type: RollingUpdate
-    rollingUpdate:
-        maxSurge: 1
-        maxUnavailable: 25%    
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 25%    
     selector:
         matchLabels:
             app: expressapp
