@@ -1,13 +1,28 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-    name: expressapp
-    labels: 
-        app: expressapp
+  name: expressapp
 spec:
-    containers:
-         - name: expressapp
-           image: dockerpanas/docker-test:latest
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+    selector:
+      matchLabels:
+        app: expressapp
+        template:
+            metadata:
+              labels:
+                app: expressapp
+            spec:
+              containers:
+              - image: dockerpanas/docker-test:latest
+                imagePullPolicy: Always
+                name: expressapp
+                ports:
+                - containerPort: 3000
               
 ---
 apiVersion: v1
