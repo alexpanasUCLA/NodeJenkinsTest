@@ -24,18 +24,19 @@ Pipeline frees space by deleting unused image on Jenkins server, and implements 
 Step 5: Testing the pipeline. 
 I changed the word in my app from 'Rolling Update!' to 'Super Update' and pushed 
 to GitHub, and initiated deployment by Jenkins using Rolling Update Strategy. 
-Rolling Update - Screens 3. 
+Rolling Update - Screens 3 - shows before the update. And Screens 4 - after the update. `kubectl describe deployments` shows change in the docker imaged deployed, and `http://a6c03b6f9cc444468bb400e06b1beb8a-779590944.us-west-2.elb.amazonaws.com:3000/` - I hope you can see the app currently running. 
 
 
-
-
-
+GitHub link `https://github.com/alexpanasUCLA/NodeJenkinsTest`
 
 
 
 
 Screenshot 1: Pipeline fails testing stage. 
 Screenshot 2: Proper working pipeline after change in the test. 
+Screenshot 3: 1-2-3 show state of cluster and pods before update. 
+Screenshot 4: 1-2-2 show state after the upgrade. 
+Screenshot 5: CloudFormation stack deployments by eks tool. 
 
 
 
